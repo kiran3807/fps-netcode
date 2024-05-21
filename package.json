@@ -1,0 +1,23 @@
+{
+  "name": "fps-netcode",
+  "version": "1.0.0",
+  "description": "toy netcode for a eventually top fps",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kiran3807/fps-netcode.git"
+  },
+  "author": "Kiran Yallabandi",
+  "license": "GPL-3.0-only",
+  "bugs": {
+    "url": "https://github.com/kiran3807/fps-netcode/issues"
+  },
+  "homepage": "https://github.com/kiran3807/fps-netcode#readme",
+  "workspaces": [
+    "packages/frontend",
+    "packages/backend"
+  ]
+}

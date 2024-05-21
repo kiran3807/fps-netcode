@@ -1,0 +1,12 @@
+{
+  "name": "netcode-backend",
+  "version": "1.0.0",
+  "description": "backend code for netcode of what eventually will be a toy-fps",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Kiran Yallabandi",
+  "license": "GPL-3.0"
+}

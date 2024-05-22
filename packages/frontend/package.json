@@ -4,7 +4,7 @@
   "description": "sample FPS at front-end for now a game of ping-pong",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "serve" : "http-server . -p 3000"
   },
   "author": "Kiran Yallabandi",
   "license": "GPL-3.0"

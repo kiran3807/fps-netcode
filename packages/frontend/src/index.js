@@ -7,9 +7,6 @@ const SURFACE_NORMALS = {
 
 class CanvasView {
 
-    // PADDLE_LENGTH = 100;
-    // PADDLE_WIDTH = 10;
-
     constructor(canvasSelector, canvasWidth, canvasHeight) {
         this.canvasSelector = canvasSelector
         this.canvasContext = canvasSelector.getContext("2d");
@@ -19,45 +16,14 @@ class CanvasView {
         this.canvasSelector.width = canvasWidth;
         this.canvasSelector.height = canvasHeight;
 
-        this.playerOnePaddleX = 0;
-        this.playerTwoPaddleX = 0;
-
-        this.playerOnePaddleView = new PaddleView(this.canvasContext, canvasWidth);
+        this.playerOnePaddleView = new PaddleView(this.canvasContext, canvasWidth, 0);
 
         this.canvasContext.fillStyle = "rgb(0 0 0)";
         this.canvasContext.fillRect(0, 0, this.canvasWidth, this.canvasHeight);        
     }
 
-    // _renderPaddle(paddleX, mouseX) {
-
-    //     this.canvasContext.fillStyle = "rgb(0 0 0)";
-    //     this.canvasContext.fillRect(
-    //         paddleX, 0, this.PADDLE_LENGTH, this.PADDLE_WIDTH
-    //     );
-
-    //     if(mouseX - (this.PADDLE_LENGTH/2) <= 0) {
-    //         this.canvasContext.fillStyle = "rgb(255 0 0)";
-    //         this.canvasContext.fillRect(0, 0, this.PADDLE_LENGTH, this.PADDLE_WIDTH);
-    //         paddleX = 0;
-    //     } else if(mouseX + (this.PADDLE_LENGTH/2) >= this.canvasWidth){
-    //         this.canvasContext.fillStyle = "rgb(255 0 0)";
-    //         this.canvasContext.fillRect(
-    //             this.canvasWidth-this.PADDLE_LENGTH, 0, this.PADDLE_LENGTH, this.PADDLE_WIDTH
-    //         );
-    //         paddleX = this.canvasWidth-this.PADDLE_LENGTH;
-    //     } else {
-    //         this.canvasContext.fillStyle = "rgb(255 0 0)";
-    //         this.canvasContext.fillRect(
-    //             mouseX-(this.PADDLE_LENGTH/2), 0, this.PADDLE_LENGTH, this.PADDLE_WIDTH
-    //         );
-    //         paddleX = mouseX - (this.PADDLE_LENGTH/2);
-    //     }
-
-    //     return paddleX;
-    // }
-
     renderPlayerOnePaddle(mouseX) {
-        this.playerOnePaddleX = this.playerOnePaddleView.renderPaddle(this.playerOnePaddleX, mouseX);
+        this.playerOnePaddleView.renderPaddle(mouseX);
     }
 
     renderPlayerTwoPaddle() {
@@ -69,37 +35,37 @@ class PaddleView {
 
     PADDLE_LENGTH = 100;
     PADDLE_WIDTH = 10;
-    constructor(canvasContext, canvasWidth) {
+
+    constructor(canvasContext, canvasWidth, paddleX) {
         this.canvasContext = canvasContext;
         this.canvasWidth = canvasWidth;
+        this.paddleX = paddleX;
     }
 
-    renderPaddle(paddleX, mouseX) {
+    renderPaddle(mouseX) {
 
         this.canvasContext.fillStyle = "rgb(0 0 0)";
         this.canvasContext.fillRect(
-            paddleX, 0, this.PADDLE_LENGTH, this.PADDLE_WIDTH
+            this.paddleX, 0, this.PADDLE_LENGTH, this.PADDLE_WIDTH
         );
 
         if(mouseX - (this.PADDLE_LENGTH/2) <= 0) {
             this.canvasContext.fillStyle = "rgb(255 0 0)";
             this.canvasContext.fillRect(0, 0, this.PADDLE_LENGTH, this.PADDLE_WIDTH);
-            paddleX = 0;
+            this.paddleX = 0;
         } else if(mouseX + (this.PADDLE_LENGTH/2) >= this.canvasWidth){
             this.canvasContext.fillStyle = "rgb(255 0 0)";
             this.canvasContext.fillRect(
                 this.canvasWidth-this.PADDLE_LENGTH, 0, this.PADDLE_LENGTH, this.PADDLE_WIDTH
             );
-            paddleX = this.canvasWidth-this.PADDLE_LENGTH;
+            this.paddleX = this.canvasWidth-this.PADDLE_LENGTH;
         } else {
             this.canvasContext.fillStyle = "rgb(255 0 0)";
             this.canvasContext.fillRect(
                 mouseX-(this.PADDLE_LENGTH/2), 0, this.PADDLE_LENGTH, this.PADDLE_WIDTH
             );
-            paddleX = mouseX - (this.PADDLE_LENGTH/2);
+            this.paddleX = mouseX - (this.PADDLE_LENGTH/2);
         }
-
-        return paddleX;
     }
 }
 
@@ -137,19 +103,6 @@ class Ball {
 window.addEventListener('load', function() {
 
     const canvas = document.querySelector("#game-canvas");
-    // const ctx = canvas.getContext("2d");
-
-    // const gameCanvasWidth = (canvas.width = window.innerWidth);
-    // const gameCanvasHeight = (canvas.height = window.innerHeight);
-
-    // ctx.fillStyle = "rgb(0 0 0)";
-    // ctx.fillRect(0, 0, gameCanvasWidth, gameCanvasHeight);
-    //const game = new Game(ctx, gameCanvasWidth, gameCanvasHeight);
-
-    // document.addEventListener("mousemove", (e) => {
-    //     game.movePlayer1Paddle(e.pageX);   
-    // });
-
 
     // ctx.fillStyle = "rgb(0 0 255)";
     // ctx.beginPath();
